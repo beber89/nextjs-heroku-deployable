@@ -17,6 +17,7 @@ import {
   Segment,
   Sidebar,
   Visibility,
+  Dropdown,
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
@@ -59,27 +60,25 @@ class DesktopContainer extends Component {
             >
               <Container>
                 <Link href={"/"}>
-                  <Menu.Item active>Home</Menu.Item>
+                  <Menu.Item active>Shop</Menu.Item>
                 </Link>
-                <Menu.Item as="a">Work</Menu.Item>
-                <Menu.Item as="a">Company</Menu.Item>
-                <Menu.Item as="a">Careers</Menu.Item>
                 <Menu.Item position="right">
-                  <Button as="a" inverted={!fixed}>
-                    Log in
-                  </Button>
-                  <Button
-                    as="a"
-                    inverted={!fixed}
-                    primary={fixed}
-                    style={{ marginLeft: "0.5em" }}
+                <Icon
+                    style={{ marginLeft: "4em", cursor: "pointer" }}
                     onClick={async () => {
-                      const { webUrl } = await getCart();
-                      Router.replace(webUrl);
                     }}
+                    name='user'
                   >
-                    checkout
-                  </Button>
+                  </Icon>
+                  <Link
+                    // onClick={async () => {
+                    //   const { webUrl } = await getCart();
+                    //   Router.replace(webUrl);
+                    // }}
+                    href={`/cart`}
+                  >
+                    <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='cart'></Icon>
+                  </Link>
                 </Menu.Item>
               </Container>
             </Menu>

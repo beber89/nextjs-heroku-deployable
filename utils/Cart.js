@@ -11,6 +11,22 @@ const addProductToCart = async (product) => {
   const cart = await client.checkout.addLineItems(checkoutId, product);
   await storeCart(cart);
 };
+const removeProductFromCart = async (productId) => {
+  let checkoutId = Cookies.get("checkoutId");
+  const cart = await client.checkout.removeLineItems(checkoutId, [productId]);
+  await storeCart(cart);
+  return cart;
+};
+const updateProductsQuantity = async (productsQuantity) => {
+  console.log("inside utils");
+  let checkoutId = Cookies.get("checkoutId");
+  console.log(productsQuantity);
+  let updates = Object.keys(productsQuantity).map( (k) => {return {id: k, quantity : Number(productsQuantity[k])} } );
+  console.log(updates);
+  const cart = await client.checkout.updateLineItems(checkoutId, updates);
+  await storeCart(cart);
+  return cart;
+};
 const getCart = async () => {
   return JSON.parse(window.localStorage.getItem("cart"));
 };
@@ -44,4 +60,4 @@ const createCheckout = async () => {
   const { id } = await client.checkout.create();
   return id;
 };
-export { addProductToCart, getCart, createCheckout, storeCart };
+export { addProductToCart, getCart, createCheckout, storeCart, removeProductFromCart, updateProductsQuantity };
