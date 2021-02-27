@@ -66,7 +66,7 @@ class DesktopContainer extends Component {
                     </Header>
                   </Menu.Item>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/shop"}>
                   <Menu.Item><Header as='h4' inverted color="grey">Shop</Header></Menu.Item>
                 </Link>
                 <Menu.Item position="right">
@@ -118,7 +118,7 @@ class MobileContainer extends Component {
                   </Header>
                 </Menu.Item>
               </Link>
-              <Link href={"/"}>
+              <Link href={"/shop"}>
                 <Menu.Item as="a">Shop</Menu.Item>
               </Link>
 

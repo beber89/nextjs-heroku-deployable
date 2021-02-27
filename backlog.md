@@ -1,5 +1,5 @@
 ## TODOs
   * TODO: footer
   * TODO: Front page
-  * TODO: Shop page
+  * TODO: in cart, item should link to product
   * TODO: Populate products

@@ -11,11 +11,15 @@ import {
   Segment,
   Dropdown,
   Input,
+  Popup,
+  Dimmer,
+  Loader,
 } from "semantic-ui-react";
 const ProductPage = (props) => {
   const [productQuantity, setProductQuantity] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState("");
+  const [addedToCartResult, setAddedToCartResult] = useState('');
   console.log(props.product);
   const {
     product: { images, title, descriptionHtml, id, variants },
@@ -30,14 +34,18 @@ const ProductPage = (props) => {
       const variantId = selectedVariant
         ? variants.find(({ title }) => title === selectedVariant).id
         : variants[0].id;
-      addProductToCart([
+      await addProductToCart([
         {
           variantId,
           quantity: Number(productQuantity),
         },
       ]);
+      setAddedToCartResult('success');
+      setTimeout(() => setAddedToCartResult(''), 1000);
     } catch (e) {
       console.log(e);
+      setAddedToCartResult('failure');
+      setTimeout(() => setAddedToCartResult(''), 1000);
     }
   };
   const options = variants.map(({ id, title }) => ({
@@ -45,73 +53,90 @@ const ProductPage = (props) => {
     value: title,
     text: title,
   }));
+  const styles ={
+    addToCart: {
+      borderRadius: 0,
+      opacity: 0.7,
+      padding: '2em',
+    }
+  };
+  const addToCartWidget = () =>
+    <Input
+    fluid
+    action={{
+      color: "teal",
+      labelPosition: "left",
+      icon: "cart",
+      content: "Checkout",
+      onClick: addToCart,
+    }}
+    type="number"
+    onChange={(e, data) => setProductQuantity(data.value)}
+    actionPosition="left"
+    placeholder="Search..."
+    defaultValue={productQuantity}
+  />;
   return (
-    <Grid centered container>
-      <Grid.Row stackable padded centered>
-        <Grid.Column mobile={16} tablet={10} computer={10}>
-          <Grid.Row>
-            <Image size="large" src={images[selectedImage].src} />
-          </Grid.Row>
-          <Grid.Row>
-            <List horizontal animated divided>
-              {images.map((image, index) => {
-                return (
-                  <List.Item
-                    style={{ cursor: "pointer" }}
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                  >
-                    <Image size="small" src={image.src} />
-                  </List.Item>
-                );
-              })}
-              {/* <Divider vertical>Or</Divider> */}
-            </List>
-          </Grid.Row>
-        </Grid.Column>
-        <Grid.Column
-          mobile={16}
-          tablet={6}
-          computer={6}
-          style={{ marginTop: 50 }}
-        >
-          <Segment>
-            <Header>{title}</Header>
-            <Header as="h3">Size </Header>
-            <Dropdown
-              // placeholder="Select Friend"
-              fluid
-              selection
-              defaultValue={options[0].value}
-              onChange={(e, { value }) => setSelectedVariant(value)}
-              options={options}
-            />
-            <Header as="h3">ADD to Cart </Header>
-            <Input
-              fluid
-              action={{
-                color: "teal",
-                labelPosition: "left",
-                icon: "cart",
-                content: "Checkout",
-                onClick: addToCart,
-              }}
-              type="number"
-              onChange={(e, data) => setProductQuantity(data.value)}
-              actionPosition="left"
-              placeholder="Search..."
-              defaultValue={productQuantity}
-            />
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid text style={{ marginTop: 50 }}>
-        <Header as="h3" textAlign="left">
-          Product Description:
-        </Header>
-        <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+    <>
+      <Dimmer active={addedToCartResult != ''?true:false}>
+        <Loader indeterminate>
+          {addedToCartResult == "success"? "Item added to cart":"Item could not be added"}
+        </Loader>
+      </Dimmer>
+      <Grid centered container>
+        <Grid.Row stackable padded centered>
+          <Grid.Column mobile={16} tablet={10} computer={10}>
+            <Grid.Row>
+              <Image size="large" src={images[selectedImage].src} />
+            </Grid.Row>
+            <Grid.Row>
+              <List horizontal animated divided>
+                {images.map((image, index) => {
+                  return (
+                    <List.Item
+                      style={{ cursor: "pointer" }}
+                      key={index}
+                      onClick={() => setSelectedImage(index)}
+                    >
+                      <Image size="small" src={image.src} />
+                    </List.Item>
+                  );
+                })}
+                {/* <Divider vertical>Or</Divider> */}
+              </List>
+            </Grid.Row>
+          </Grid.Column>
+          <Grid.Column
+            mobile={16}
+            tablet={6}
+            computer={6}
+            style={{ marginTop: 50 }}
+          >
+            <Segment>
+              <Header>{title}</Header>
+              <Header as="h3">Size </Header>
+              <Dropdown
+                // placeholder="Select Friend"
+                fluid
+                selection
+                defaultValue={options[0].value}
+                onChange={(e, { value }) => setSelectedVariant(value)}
+                options={options}
+              />
+              <Header as="h3">ADD to Cart </Header>
+              {addToCartWidget()}
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid text style={{ marginTop: 50 }}>
+          <Header as="h3" textAlign="left">
+            Product Description:
+          </Header>
+          <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+        </Grid>
       </Grid>
-    </Grid>
+    </>
+
   );
 };
 
