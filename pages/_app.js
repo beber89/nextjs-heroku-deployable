@@ -60,22 +60,17 @@ class DesktopContainer extends Component {
             >
               <Container>
                 <Link href={"/"}>
-                  <Menu.Item active>Shop</Menu.Item>
+                  <Menu.Item>
+                    <Header as='h3' inverted color='blue'>
+                      Imagine-a-Company
+                    </Header>
+                  </Menu.Item>
+                </Link>
+                <Link href={"/"}>
+                  <Menu.Item><Header as='h4' inverted color="grey">Shop</Header></Menu.Item>
                 </Link>
                 <Menu.Item position="right">
-                <Icon
-                    style={{ marginLeft: "4em", cursor: "pointer" }}
-                    onClick={async () => {
-                    }}
-                    name='user'
-                  >
-                  </Icon>
-                  <Link
-                    // onClick={async () => {
-                    //   const { webUrl } = await getCart();
-                    //   Router.replace(webUrl);
-                    // }}
-                    href={`/cart`}
+                  <Link href={`/cart`}
                   >
                     <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='cart'></Icon>
                   </Link>
@@ -116,14 +111,17 @@ class MobileContainer extends Component {
             vertical
             visible={sidebarOpened}
           >
-            <Menu.Item as="a" active>
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">Work</Menu.Item>
-            <Menu.Item as="a">Company</Menu.Item>
-            <Menu.Item as="a">Careers</Menu.Item>
-            <Menu.Item as="a">Log in</Menu.Item>
-            <Menu.Item as="a">Sign Up</Menu.Item>
+              <Link href={"/"}>
+                <Menu.Item style={{marginTop:"3em"}}>
+                  <Header as='h3' inverted color='blue'>
+                    Imagine-a-Company
+                  </Header>
+                </Menu.Item>
+              </Link>
+              <Link href={"/"}>
+                <Menu.Item as="a">Shop</Menu.Item>
+              </Link>
+
           </Sidebar>
 
           <Sidebar.Pusher dimmed={sidebarOpened}>
@@ -138,14 +136,12 @@ class MobileContainer extends Component {
                   <Menu.Item onClick={this.handleToggle}>
                     <Icon name="sidebar" />
                   </Menu.Item>
-                  <Menu.Item position="right">
-                    <Button as="a" inverted>
-                      Log in
-                    </Button>
-                    <Button as="a" inverted style={{ marginLeft: "0.5em" }}>
-                      Sign Up
-                    </Button>
-                  </Menu.Item>
+                    <Menu.Item position="right">
+                    <Link href={`/cart`}
+                    >
+                      <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='cart'></Icon>
+                    </Link>
+                    </Menu.Item>
                 </Menu>
               </Container>
             </Segment>

@@ -81,7 +81,7 @@ const Home = (props) =>
                 fontWeight: "normal",
               }}
             />
-            <Card.Group itemsPerRow={props.isMobile ? 3 : 4}>
+            <Card.Group itemsPerRow={props.isMobile ? 1 : 4}>
               {props.products?.map(
                 (product) =>
                   console.log(product) || (
