@@ -3,6 +3,8 @@ import { Button, Container, Image, Table, Icon, Header, Input, Card, Grid } from
 import { getCart, removeProductFromCart, updateProductsQuantity } from "../utils/Cart";
 import Router from 'next/router';
 import { createMedia } from "@artsy/fresnel";
+import Link from "next/link";
+
 
 
 
@@ -45,8 +47,8 @@ const CartPage =  (props) => {
                         <Table.Row>
                           <Table.Cell>
                             <Header as='h4' image>
-                              <Image src={item.variant.image.src} rounded size='tiny' />
-                              <Header.Content>
+                                <Image src={item.variant.image.src} rounded size='tiny' />
+                                <Header.Content>
                                 {item.title}
                                 <Header.Subheader>{item.variant.title}</Header.Subheader>
                               </Header.Content>

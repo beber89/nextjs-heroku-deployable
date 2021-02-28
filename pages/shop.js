@@ -5,20 +5,23 @@ import { Button, Container, Popup, Segment, Image, Header, Card, Grid } from 'se
 
 import { createMedia } from "@artsy/fresnel";
 
+import styles  from './styles.js';
+
 const ShopPage = (props) => {
   console.log(props);
   console.log(props.collections);
   return (
     <>
       <Segment vertical style={{ padding: "2em" }}>
-        <Grid container stackable verticalAlign="top">
-            <Grid.Column width={4} style={{paddingTop: "3em"}}>
+        <Grid   stackable verticalAlign="top">
+            <Grid.Column width={2} style={{paddingTop: "3em", marginRight: "6em"}}>
             {props.collections?.map((collection) => 
                     <Grid.Row>
                         <a  href={`#pageref_${collection.title}`}>
                             <Header
+                            style={{...styles.fontSerif, textAlign: "center"}}
+                            as="h4"
                             content={collection.title}
-                            size="small"
                             />
                         </a>
                         <hr></hr>

@@ -21,6 +21,8 @@ import {
   Visibility,
 } from "semantic-ui-react";
 
+import styles from './styles.js'
+
 /* Heads up!
  * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
  * components for such things.
@@ -70,43 +72,27 @@ const Home = (props) =>
       >
         <HomepageHeading mobile={props.isMobile} />
       </Segment>
-      <Segment vertical style={{ padding: "2em" }}>
-        <Grid container stackable verticalAlign="middle">
+      <Segment vertical style={{ }}>
+        <Grid style={styles.fontSerif}>
           <Grid.Row>
-            <Header
-              content="Best Sales Product"
-              as="h2"
-              style={{
-                fontSize: props.isMobile ? "1.5em" : "1.7em",
-                fontWeight: "normal",
-              }}
-            />
-            <Card.Group itemsPerRow={props.isMobile ? 1 : 4}>
-              {props.products?.map(
-                (product) =>
-                  console.log(product) || (
-                    <Link key={product.id} href={`product/${product.id}`}>
-                      <Card raised>
-                        <Image src={product.images[0].src} wrapped ui={false} />
-                        <Card.Content>
-                          <Header sub>
-                            <Popup
-                              trigger={<div>{product.title}</div>}
-                              content={product.title}
-                              position="top left"
-                            />
-                          </Header>
-                          <Card.Meta>Joined in 2016</Card.Meta>
-                          <Card.Description>
-                            Daniel is a comedian living in Nashville.
-                          </Card.Description>
-                        </Card.Content>
-                      </Card>
-                     </Link>
-                  )
-              )}
-            </Card.Group>
+            <Grid.Column width={3} style={{textAlign: "center", paddingLeft: "3em", paddingRight: "3em"}}>
+              <Image avatar src='/pics/portrait-of-handsome-man.jpg' size="tiny" />
+              <Header as="h3" style={{...styles.fontSerif, textAlign:"center", color: "rgb(221, 51, 51)"}}>Welcome! I'm happy that you're here.</Header>
+              <Header as="h5" style={{...styles.fontSerif, textAlign:"center"}}>I'm Janine Vangool, the publisher, editor, designer (and customer service, too!) of this one-woman operation. I appreciate you taking the time to read and understand the pertinent details below before proceeding with your purchase. It will make your ordering experience easier and my workload a little lighter—so that I can concentrate on creating all these lovely books and magazines!</Header>
+            </Grid.Column>
+            <Grid.Column width={13} style={{paddingTop: "6em", paddingLeft: "6em", paddingRight: "12em"}}>
+              <Header as="h2" style={styles.fontSerif}>UPPERCASE publishes beautiful and inspiring books and a quarterly magazine about craft, design and visual art.</Header>
+              <span>Published since 2009, my quarterly magazine is for the creative and curious: UPPERCASE has an enthusiastic and loyal readership of designers, illustrators, craftspeople, creative entrepreneurs and paper lovers around the world. Ads-free, with high-quality production values and a unique design aesthetic, the content of each issue is eclectic and inspiring. </span> 
+              <br></br><br></br><br></br>
+              <span>The mission of UPPERCASE is to bring quality content and inspiration to my readers on a consistent basis in a way that is authentic, generous, community-minded and sustainable. UPPERCASE shares an inclusive and positive perspective and welcomes everyone: all colours, identities, ages, talents and abilities.</span>
+            </Grid.Column>
           </Grid.Row>
+          {/* <Grid.Row stretched columns={2} >
+            <Grid.Column stretched style={{minHeight: "50vh", backgroundImage: "url(/pics/1140263.jpg)"}}>
+            </Grid.Column>
+            <Grid.Column stretched style={{minHeight: "50vh", backgroundImage: "url(/pics/1140265.jpg)"}}>
+            </Grid.Column>
+          </Grid.Row> */}
         </Grid>
       </Segment>
     </>
