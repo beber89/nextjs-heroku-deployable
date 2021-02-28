@@ -59,9 +59,9 @@ const ShopPage = (props) => {
                                       position="top left"
                                     />
                                   </Header>
-                                  <Card.Meta>Joined in 2016</Card.Meta>
+                                  <Card.Meta><s>{product.variants[0].compareAtPrice!=""? `${product.variants[0].priceV2.currencyCode} ${product.variants[0].compareAtPrice}`:"&nbsp"}</s></Card.Meta>
                                   <Card.Description>
-                                    {product.description}
+                                    {product.variants[0].priceV2.currencyCode} {product.variants[0].price}
                                   </Card.Description>
                                 </Card.Content>
                               </Card>
