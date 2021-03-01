@@ -20,6 +20,7 @@ import {
   Dropdown,
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import "./styles.css"
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -70,6 +71,10 @@ class DesktopContainer extends Component {
                   <Menu.Item><Header as='h4' inverted color="grey">Shop</Header></Menu.Item>
                 </Link>
                 <Menu.Item position="right">
+                  <Link href={`/contactus`}
+                    >
+                      <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='phone'></Icon>
+                    </Link>
                   <Link href={`/cart`}
                   >
                     <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='cart'></Icon>
@@ -136,6 +141,12 @@ class MobileContainer extends Component {
                   <Menu.Item onClick={this.handleToggle}>
                     <Icon name="sidebar" />
                   </Menu.Item>
+                    <Menu.Item position="right">
+                      <Link href={`/cart`}
+                      >
+                        <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='phone'></Icon>
+                      </Link>
+                    </Menu.Item>
                     <Menu.Item position="right">
                     <Link href={`/cart`}
                     >

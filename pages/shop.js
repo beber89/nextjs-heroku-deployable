@@ -19,7 +19,7 @@ const ShopPage = (props) => {
                     <Grid.Row>
                         <a  href={`#pageref_${collection.title}`}>
                             <Header
-                            style={{...styles.fontSerif, textAlign: "center"}}
+                            style={{...styles.fontOptima, textAlign: "center"}}
                             as="h4"
                             content={collection.title}
                             />
@@ -52,7 +52,7 @@ const ShopPage = (props) => {
                               <Card raised>
                                 <Image src={product.images[0].src} wrapped ui={false} />
                                 <Card.Content>
-                                  <Header sub>
+                                  <Header size="huge" sub>
                                     <Popup
                                       trigger={<div>{product.title}</div>}
                                       content={product.title}

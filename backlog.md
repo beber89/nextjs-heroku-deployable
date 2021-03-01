@@ -1,5 +1,5 @@
 ## TODOs
   * TODO: footer
-  * TODO: Front page
+  * TODO: Contact Us
   * TODO: in cart, item should link to product
-  * TODO: categories shown in sidebar
+  * TODO: Remove categories
