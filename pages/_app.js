@@ -83,7 +83,7 @@ class DesktopContainer extends Component {
                   </Menu.Item>
                 </Link>
                 <Menu.Item position="right">
-                  <Link href={`/contactus`}
+                  <Link href={`https://domdevstore.myshopify.com/pages/contact-us`}
                     >
                       <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='phone'></Icon>
                     </Link>

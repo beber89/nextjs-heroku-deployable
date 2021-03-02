@@ -47,12 +47,14 @@ const ContactusPage = (props) => {
                             EMAIL FORM
                         </Header>
                         <hr color= "#ECF0F0"></hr><br></br>
-                        <Form>
-                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="name" width="16" control={Input} label="NAME" />
-                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="email" width="16" control={Input} type="email" label="EMAIL" />
-                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="subject" width="16" control={Input} label="SUBJECT" />
-                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="message" width="16" control={TextArea} label="MESSAGE" />
-                            <Form.Field type="submit" onClick={() => buttonSubmit(formInputs)} control={Button} style={{color: "white", backgroundColor: "#1b1c1d"}}>SEND</Form.Field>
+                        <Form as="form" acceptCharset="UTF-8" action="https://domdevstore.myshopify.com/contact" method="post">
+                            <input name="form_type" type="hidden" value="contact" />
+                            <input name="utf8" type="hidden" value="✓" />
+                            <input   width="16" name="control[Name]" />
+                            <input   width="16" type="email" name="control[email]" />
+                            <input   width="16" name="control[Phone Number]" pattern="[0-9\-]*"/>
+                            <textarea   width="16" name="control[Message]" />
+                            <input type="submit" style={{color: "white", backgroundColor: "#1b1c1d"}} value="SEND"/>
                         </Form>
                     </Grid.Column>
                 </Grid.Row>
