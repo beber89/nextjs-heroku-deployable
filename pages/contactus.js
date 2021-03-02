@@ -1,7 +1,23 @@
+import React from "react";
 import { Segment, Header, Grid, Input, TextArea, Button, Form } from "semantic-ui-react";
 
+const buttonSubmit = async (formInputs) => {
+    let response = await fetch('/api/message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(formInputs)
+      });
+    console.log(response);
+};
+
+const fieldOnChange = (target, formInputs, setFormInputs) => {
+    setFormInputs({...formInputs, [target.name]: target.value});
+}
 
 const ContactusPage = (props) => {
+    let [formInputs, setFormInputs] = React.useState({name: "", email: "", subject: "", message: ""});
     return (
         <Segment>
             <Header style={{textAlign: "center", color: "#B3B6B6", marginTop: "2em"}}>
@@ -32,20 +48,12 @@ const ContactusPage = (props) => {
                         </Header>
                         <hr color= "#ECF0F0"></hr><br></br>
                         <Form>
-                            <Form.Group>
-                                <Form.Field width="16" control={Input} label="NAME" >
-                                </Form.Field>
-                            </Form.Group>
+                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="name" width="16" control={Input} label="NAME" />
+                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="email" width="16" control={Input} type="email" label="EMAIL" />
+                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="subject" width="16" control={Input} label="SUBJECT" />
+                            <Form.Field onChange={(e) => fieldOnChange(e.target, formInputs, setFormInputs)} name="message" width="16" control={TextArea} label="MESSAGE" />
+                            <Form.Field type="submit" onClick={() => buttonSubmit(formInputs)} control={Button} style={{color: "white", backgroundColor: "#1b1c1d"}}>SEND</Form.Field>
                         </Form>
-                        <p>NAME</p>
-                        <Input type="text" style={{width:"100%", marginBottom:"1em"}}></Input>
-                        <p>EMAIL</p>
-                        <Input type="email" style={{width:"100%", marginBottom:"1em"}}></Input>
-                        <p>SUBJECT</p>
-                        <Input type="text" style={{width:"100%", marginBottom:"1em"}}></Input>
-                        <p>MESSAGE</p>
-                        <TextArea style={{width:"100%", marginBottom:"1em"}}></TextArea>
-                        <Button style={{color: "white", backgroundColor: "#1b1c1d"}}>SEND</Button>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

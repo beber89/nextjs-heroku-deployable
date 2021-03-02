@@ -67,8 +67,20 @@ class DesktopContainer extends Component {
                     </Header>
                   </Menu.Item>
                 </Link>
+                <Link href={"/"}>
+                  <Menu.Item>
+                    <Header as='h4' inverted color="grey">Home</Header>
+                  </Menu.Item>
+                </Link>
                 <Link href={"/shop"}>
-                  <Menu.Item><Header as='h4' inverted color="grey">Shop</Header></Menu.Item>
+                  <Menu.Item>
+                    <Header as='h4' inverted color="grey">Products</Header>
+                  </Menu.Item>
+                </Link>
+                <Link href={"/shop"}>
+                  <Menu.Item>
+                    <Header as='h4' inverted color="grey">Sale</Header>
+                  </Menu.Item>
                 </Link>
                 <Menu.Item position="right">
                   <Link href={`/contactus`}
