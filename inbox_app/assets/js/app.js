@@ -14,6 +14,10 @@ import "../css/app.scss"
 //
 import "phoenix_html"
 
-import greet from "./hello";
+import React from "react";
+import ReactDOM from "react-dom";
 
-document.querySelector("section.phx-hero h1").innerHTML = greet("Phoenix");
+import Greeter from "./greeter";
+
+const app = document.getElementById("app");
+ReactDOM.render(<Greeter name="Phoenix" />, app);
