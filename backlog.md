@@ -2,8 +2,8 @@
   * TODO: footer
   * TODO: Contact Us
     * ask if it is possible to use shopify-admin with api
-    * show success feedback for sent email
-    * show feedback for error
+    * Create an admin app to receive messages
+    * | create custom liquid contact us in store
   * TODO: in cart, item should link to product
   * TODO: Remove categories
   * TODO: Quantity input change increment field
