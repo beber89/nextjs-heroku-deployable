@@ -1,10 +1,10 @@
 import React from "react";
 
-interface GreeterProps {
+interface AppProps {
   name: string;
 }
 
-const Greeter: React.FC<GreeterProps> = (props: GreeterProps) => {
+const App: React.FC<AppProps> = (props: AppProps) => {
   const name = props.name;
   return (
     <section className="phx-hero">
@@ -18,4 +18,4 @@ const Greeter: React.FC<GreeterProps> = (props: GreeterProps) => {
   );
 };
 
-export default Greeter;
+export default App;

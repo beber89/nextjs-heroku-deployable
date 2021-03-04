@@ -8,9 +8,18 @@ defmodule InboxAppWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
+  pipeline :auth do
+    plug InboxAppWeb.Plug.AuthenticateUserSession
+  end
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  scope "/api/user" do
+    pipe_through :api
+
+    post "/", InboxAppWeb.UserController, :index
   end
 
   scope "/", InboxAppWeb do
