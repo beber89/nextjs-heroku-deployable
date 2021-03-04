@@ -1,6 +1,7 @@
 ## TODOs
   * TODO: footer
   * TODO: Contact Us
+    * ditch shopify-admin idea and use Nodemailer
     * ask if it is possible to use shopify-admin with api
     * show success feedback for sent email
     * show feedback for error
