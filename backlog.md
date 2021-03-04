@@ -2,7 +2,6 @@
   * TODO: footer
   * TODO: Contact Us
     * ditch shopify-admin idea and use Nodemailer
-    * ask if it is possible to use shopify-admin with api
     * show success feedback for sent email
     * show feedback for error
   * TODO: in cart, item should link to product
@@ -12,6 +11,7 @@
     * config for merchant specific info: email, phone, address, ...
     * config for themes
     * config for app info: environment, urls, ...
+  * TODO: redeploy to heruko and writedown walkthrough
 
 ## Next Phase
   * Contact Us validation
