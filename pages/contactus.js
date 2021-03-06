@@ -23,6 +23,7 @@ const fieldOnChange = (target, formInputs, setFormInputs) => {
 }
 
 const ContactusPage = (props) => {
+    console.log(props.isMobile);
     let [formInputs, setFormInputs] = React.useState({name: "", email: "", subject: "", message: ""});
     let [pageState, setPageState] = React.useState({messageSent: false, loading: false, error: false})
     return (
@@ -32,8 +33,8 @@ const ContactusPage = (props) => {
             </Header>
             <br></br><br></br><br></br>
             <Grid>
-                <Grid.Row centered  columns={2} style={{margin: "3em"}}>
-                    <Grid.Column width={6} style={{marginRight: "2em"}} >
+                <Grid.Row centered  columns={props.isMobile? 1:2} style={{margin: "3em"}}>
+                    <Grid.Column width={props.isMobile? 16:6} style={{marginRight: "2em"}} >
                         <Header style={{textAlign: "center", color: "#CD5858"}}>
                             CONTACT INFO
                         </Header>
@@ -49,7 +50,7 @@ const ContactusPage = (props) => {
                         </Header>
                         <p>Email us at email@MyStore.com (Please allow 1 business day to respond)</p>
                     </Grid.Column>
-                    <Grid.Column width={6} style={{marginLeft: "2em"}}>
+                    <Grid.Column width={props.isMobile? 16:6} style={props.isMobile? {marginTop: "4em"}:{marginLeft: "2em"}}>
                         <Header style={{textAlign: "center", color: "#CD5858"}}>
                             EMAIL FORM
                         </Header>

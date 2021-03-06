@@ -9,6 +9,8 @@
     * config for app info: environment, urls, ...
   * TODO: redeploy to heruko and writedown walkthrough
   * FIXME: Side Menu not open in mobile view
+    * might work in production
+    * Fixed : Do not know how !!!
 
 ## Next Phase
   * Contact Us validation

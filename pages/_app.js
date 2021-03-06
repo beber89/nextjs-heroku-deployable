@@ -107,19 +107,15 @@ DesktopContainer.propTypes = {
   children: PropTypes.node,
 };
 class MobileContainer extends Component {
-  state = {sidebarOpened: true};
+  state = {sidebarOpened: false};
 
   handleSidebarHide = () => this.setState({ sidebarOpened: false });
 
-  handleToggle = async () => { 
-    setTimeout(this.setState({ sidebarOpened: true }), 750);
-  }
+  handleToggle = async () => this.setState({ sidebarOpened: true });
 
   render() {
-    console.log("rerendering")
     const { children } = this.props;
     const { sidebarOpened } = this.state;
-    console.log(sidebarOpened);
 
     return (
       <Media as={Sidebar.Pushable} at="mobile">
@@ -158,12 +154,10 @@ class MobileContainer extends Component {
                     <Icon name="sidebar" />
                   </Menu.Item>
                     <Menu.Item position="right">
-                      <Link href={`/cart`}
+                    <Link href={`/contactus`}
                       >
                         <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='phone'></Icon>
                       </Link>
-                    </Menu.Item>
-                    <Menu.Item position="right">
                     <Link href={`/cart`}
                     >
                       <Icon style={{marginLeft: "1em", cursor: "pointer" }} name='cart'></Icon>

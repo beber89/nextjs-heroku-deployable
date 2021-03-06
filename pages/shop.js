@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
 import { client } from "../utils/shopify";
-import { Button, Container, Popup, Segment, Image, Header, Card, Grid } from 'semantic-ui-react'
+import { Popup, Segment, Image, Header, Card, Grid } from 'semantic-ui-react'
 
-import { createMedia } from "@artsy/fresnel";
 
 import styles  from './styles.js';
 
 const ShopPage = (props) => {
-  console.log(props);
-  console.log(props.collections);
   return (
     <>
       <Segment vertical style={{ padding: "2em" }}>
