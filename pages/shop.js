@@ -11,7 +11,7 @@ const ShopPage = (props) => {
     <>
       <Segment vertical style={{ padding: "2em" }}>
         <Grid   stackable verticalAlign="top">
-            <Grid.Column width={2} style={{paddingTop: "3em", marginRight: "6em"}}>
+            {/* <Grid.Column width={2} style={{paddingTop: "3em", marginRight: "6em"}}>
             {props.collections?.map((collection) => 
                     <Grid.Row>
                         <a  href={`#pageref_${collection.title}`}>
@@ -24,27 +24,12 @@ const ShopPage = (props) => {
                         <hr></hr>
                     </Grid.Row>
             )}
-            </Grid.Column>
-            <Grid.Column width={12}>
-            {props.collections?.map((collection) => {
+            </Grid.Column> */}
+            <Grid.Column width={16}>
+              <Card.Group style={{marginBottom: "1em"}} itemsPerRow={props.isMobile ? 1 : 4}>
+            {props.products?.map((product) => {
                 return (
-                    <Grid.Row>
-                    <Header
-                      id={`pageref_${collection.title}`}
-                      content={collection.title}
-                      as="h2"
-                      size="large"
-                      style={{
-                        fontSize: props.isMobile ? "1.5em" : "1.7em",
-                        fontWeight: "normal",
-                        marginBottom: "1.5em",
-                        textAlign: "center"
-                      }}
-                    />
-                    <Card.Group style={{marginBottom: "1em"}} itemsPerRow={props.isMobile ? 1 : 4}>
-                      {collection.products?.map(
-                        (product) =>
-                          console.log(product) || (
+                    
                             <Link key={product.id} href={`product/${product.id}`}>
                               <Card raised>
                                 <Image src={product.images[0].src} wrapped ui={false} />
@@ -63,12 +48,9 @@ const ShopPage = (props) => {
                                 </Card.Content>
                               </Card>
                              </Link>
-                          )
-                      )}
-                    </Card.Group>
-                  </Grid.Row>
-                );
-            })}
+                    
+                );})}
+                </Card.Group>
             </Grid.Column>
 
         </Grid>
