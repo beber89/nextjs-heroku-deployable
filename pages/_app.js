@@ -107,15 +107,19 @@ DesktopContainer.propTypes = {
   children: PropTypes.node,
 };
 class MobileContainer extends Component {
-  state = {};
+  state = {sidebarOpened: true};
 
   handleSidebarHide = () => this.setState({ sidebarOpened: false });
 
-  handleToggle = () => this.setState({ sidebarOpened: true });
+  handleToggle = async () => { 
+    setTimeout(this.setState({ sidebarOpened: true }), 750);
+  }
 
   render() {
+    console.log("rerendering")
     const { children } = this.props;
     const { sidebarOpened } = this.state;
+    console.log(sidebarOpened);
 
     return (
       <Media as={Sidebar.Pushable} at="mobile">

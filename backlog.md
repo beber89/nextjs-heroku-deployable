@@ -1,9 +1,5 @@
 ## TODOs
   * TODO: footer
-  * TODO: Contact Us
-    * ditch shopify-admin idea and use Nodemailer
-    * show success feedback for sent email
-    * show feedback for error
   * TODO: in cart, item should link to product
   * TODO: Remove categories
   * TODO: Quantity input change increment field
@@ -12,6 +8,7 @@
     * config for themes
     * config for app info: environment, urls, ...
   * TODO: redeploy to heruko and writedown walkthrough
+  * FIXME: Side Menu not open in mobile view
 
 ## Next Phase
   * Contact Us validation

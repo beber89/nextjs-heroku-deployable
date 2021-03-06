@@ -45,13 +45,13 @@ export default async function  handler(req, res) {
     
       // Preview only available when sending through an Ethereal account
 
-    }
-         catch(error) {
+      } catch(error) {
             console.error(error);
-        }
+            res.status(404).json({ error: 'Could not send email' });
+      }
     } else {
       // Handle any other HTTP method
-      res.status(401).json({ error: 'Incorrect method' });
+      res.status(401).json({ error: 'Improper request method' });
     }
     res.status(200).json({ name: 'John Doe' });
   }
