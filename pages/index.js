@@ -87,7 +87,7 @@ const Home = (props) =>
               <span>The mission of UPPERCASE is to bring quality content and inspiration to my readers on a consistent basis in a way that is authentic, generous, community-minded and sustainable. UPPERCASE shares an inclusive and positive perspective and welcomes everyone: all colours, identities, ages, talents and abilities.</span>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row columns={props.isMobile?1:2} >
+          <Grid.Row columns={props.isMobile?1:2} style={{paddingBottom: "0"}}>
             <Grid.Column  style={styles.padding0}>
               <Image src="/pics/1140261.jpg"></Image>
               <div style={{position: "absolute", margin: "20px", left: "40px", top: "40px",  color: "lavender"}}>
@@ -102,6 +102,18 @@ const Home = (props) =>
               <div style={{position: "absolute", margin: "20px", left: "40px", top: "40px", color: "maroon"}}>
                 <h2>Reliable</h2>
                 <span>Look at this tank ! yes our products are as reliable as this tank but do not go on kill people with our products.</span>
+                <br></br><br></br><br></br>
+                <Button as="a" href="/shop" style={{marginTop: "10px"}} primary>Shop Now</Button>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={1} style={{paddingTop: "0"}}>
+            <Grid.Column  style={styles.padding0}>
+              <Image src="/pics/1_9m3OQd_ZTahJFrIIoLPQRQ.jpeg"></Image>
+              <div style={{position: "absolute", margin: "20px", left: "40px", top: "40px",  color: "lavender"}}>
+                <h2>Really Cooooool Products</h2>
+                <span>Few more praises ... You are not gonna read that anyway are you ?</span>
+                <p>You have nothing else to do !!!</p>
                 <br></br><br></br><br></br>
                 <Button as="a" href="/shop" style={{marginTop: "10px"}} primary>Shop Now</Button>
               </div>
