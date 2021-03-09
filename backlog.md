@@ -1,7 +1,6 @@
 ## TODOs
   * TODO: footer
   * TODO: in cart, item should link to product
-  * TODO: Add one image in frontpage
   * TODO: Quantity input change increment field
   * TODO: Configs
     * config for merchant specific info: email, phone, address, ...

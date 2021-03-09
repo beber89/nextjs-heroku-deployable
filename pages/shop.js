@@ -4,29 +4,13 @@ import { client } from "../utils/shopify";
 import { Popup, Segment, Image, Header, Card, Grid } from 'semantic-ui-react'
 
 
-import styles  from './styles.js';
-
 const ShopPage = (props) => {
   return (
     <>
       <Segment vertical style={{ padding: "2em" }}>
         <Grid   stackable verticalAlign="top">
-            {/* <Grid.Column width={2} style={{paddingTop: "3em", marginRight: "6em"}}>
-            {props.collections?.map((collection) => 
-                    <Grid.Row>
-                        <a  href={`#pageref_${collection.title}`}>
-                            <Header
-                            style={{...styles.fontOptima, textAlign: "center"}}
-                            as="h4"
-                            content={collection.title}
-                            />
-                        </a>
-                        <hr></hr>
-                    </Grid.Row>
-            )}
-            </Grid.Column> */}
             <Grid.Column width={16}>
-              <Card.Group style={{marginBottom: "1em"}} itemsPerRow={props.isMobile ? 1 : 4}>
+              <Card.Group style={{marginBottom: "1em"}} itemsPerRow={props.isMobile ? 1 : 6}>
             {props.products?.map((product) => {
                 return (
                     

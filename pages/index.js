@@ -21,8 +21,6 @@ import {
   Visibility,
 } from "semantic-ui-react";
 
-import styles from './styles.js'
-
 /* Heads up!
  * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
  * components for such things.
@@ -88,7 +86,7 @@ const Home = (props) =>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={props.isMobile?1:2} style={{paddingBottom: "0"}}>
-            <Grid.Column  style={styles.padding0}>
+            <Grid.Column  style={{padding: "0"}}>
               <Image src="/pics/1140261.jpg"></Image>
               <div style={{position: "absolute", margin: "20px", left: "40px", top: "40px",  color: "lavender"}}>
                 <h2>Cool Products</h2>
@@ -97,7 +95,7 @@ const Home = (props) =>
                 <Button as="a" href="/shop" style={{marginTop: "10px"}} primary>Shop Now</Button>
               </div>
             </Grid.Column>
-            <Grid.Column  style={styles.padding0}>
+            <Grid.Column  style={{padding: "0"}}>
               <Image src="/pics/1140265.jpg"></Image>
               <div style={{position: "absolute", margin: "20px", left: "40px", top: "40px", color: "maroon"}}>
                 <h2>Reliable</h2>
@@ -108,7 +106,7 @@ const Home = (props) =>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1} style={{paddingTop: "0"}}>
-            <Grid.Column  style={styles.padding0}>
+            <Grid.Column  style={{padding: "0"}}>
               <Image src="/pics/1_9m3OQd_ZTahJFrIIoLPQRQ.jpeg"></Image>
               <div style={{position: "absolute", margin: "20px", left: "40px", top: "40px",  color: "lavender"}}>
                 <h2>Really Cooooool Products</h2>

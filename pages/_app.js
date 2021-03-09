@@ -231,6 +231,11 @@ function MyApp({ Component, pageProps }) {
           </Grid>
         </Container>
       </Segment>
+      <style jsx global>{`
+        * {
+          font-family: Optima, Geneva, Candara, Calibri, Segoe, Segoe UI, Arial, sans-serif;
+        }
+      `}</style>
     </>
   );
 }
