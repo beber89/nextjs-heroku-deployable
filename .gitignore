@@ -38,3 +38,5 @@ yarn-error.log*
 *Zone.Identifier
 
 *config.js*
+
+.env.sh

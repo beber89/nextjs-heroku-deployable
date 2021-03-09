@@ -1,7 +1,5 @@
 "use strict";
 
-
-import * as testAccount from './email-config';
 const nodemailer = require("nodemailer");
 
 
@@ -23,16 +21,16 @@ export default async function  handler(req, res) {
           ciphers:'SSLv3'
         },
         auth: {
-          user: testAccount.email, // generated ethereal user
-          pass: testAccount.pass, // generated ethereal password
+          user: process.env.EMAIL, // generated ethereal user
+          pass: process.env.SECRET, // generated ethereal password
         },
       });
 
       try { 
       // send mail with defined transport object
       let info = await transporter.sendMail({
-        from: `"MyWebStoreName 🌈" <${testAccount.email}>`, // sender address
-        to: testAccount.email, // list of receivers
+        from: `"MyWebStoreName 🌈" <${process.env.EMAIL}>`, // sender address
+        to: process.env.EMAIL, // list of receivers
         subject: formInputs.subject, // Subject line
         html: `<p><strong>Customer Name</strong>: ${formInputs.name}</p>
             <p><strong>Customer Email</strong>: ${formInputs.email}</p>
