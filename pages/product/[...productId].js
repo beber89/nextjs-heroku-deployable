@@ -14,6 +14,7 @@ import {
   Popup,
   Dimmer,
   Loader,
+  Button,
 } from "semantic-ui-react";
 const ProductPage = (props) => {
   const [productQuantity, setProductQuantity] = useState(0);
@@ -61,21 +62,32 @@ const ProductPage = (props) => {
     }
   };
   const addToCartWidget = () =>
-    <Input
-    fluid
-    action={{
-      color: "teal",
-      labelPosition: "left",
-      icon: "cart",
-      content: "Checkout",
-      onClick: addToCart,
-    }}
-    type="number"
-    onChange={(e, data) => setProductQuantity(data.value)}
-    actionPosition="left"
-    placeholder="Search..."
-    defaultValue={productQuantity}
-  />;
+  <Grid centered container>
+    <Grid.Row stackable padded centered>
+      <Grid.Column stretched style={{padding:"0", margin:"0"}} width={2}>
+        <Button style={{margin:"0"}} icon='remove' onClick={()=>{
+          if (productQuantity == 0)
+            return
+          setProductQuantity(productQuantity-1)
+        }}/>
+      </Grid.Column>
+      <Grid.Column style={{padding:"0", margin:"0"}} width={8}>
+        <Input
+          fluid
+          disabled
+          placeholder="0"
+          value={productQuantity}
+          defaultValue={productQuantity}
+        />
+      </Grid.Column>
+      <Grid.Column stretched style={{padding:"0", margin:"0"}} width={2}>
+        <Button style={{margin:"0"}} icon='add' onClick={()=>setProductQuantity(productQuantity+1)} />
+      </Grid.Column>
+    </Grid.Row>
+    <Grid.Row stretched stackable padded centered>
+      <Button  style={{color:"#dcddde", backgroundColor:"#1b1c1d", width:"100%"}} onClick={addToCart} icon="cart">ADD TO CART</Button>
+    </Grid.Row>
+  </Grid>;
   return (
     <>
       <Dimmer active={addedToCartResult != ''?true:false}>
