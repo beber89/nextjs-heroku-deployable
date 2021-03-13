@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { client } from "../../utils/shopify";
+import _ from "lodash";
 import { addProductToCart } from "../../utils/Cart";
 
 import {
@@ -16,28 +17,57 @@ import {
   Loader,
   Button,
 } from "semantic-ui-react";
+
+const getIdFromData = (variants, selectedVar) => {
+  const variant = variants.find(({ title }) => Object.keys(selectedVar).map((k)=> title.includes(selectedVar[k])).reduce((a, c)=> a&&c) );
+  const varId =  variant!= null? variant.id:null;
+  return varId;
+}
 const ProductPage = (props) => {
   const [productQuantity, setProductQuantity] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState("");
+  const [selectedVariant, setSelectedVariant] = useState({});
   const [addedToCartResult, setAddedToCartResult] = useState('');
-  console.log(props.product);
+  const [allOpts, setAllOpts] = useState([]);
+  const [validOpts, setValidOpts] = useState([]);
+
+  React.useEffect(() => {
+    const {product: {  variants, options }, } = props
+    // init all opts
+    const ks = options.map((o)=>o.name);
+    const vars = variants.map((v)=> v.title.split("/"));
+    const aOpts = vars.map( (x) => _.range(ks.length).map((i)=>  {
+      return {[ks[i]]: x[i]}
+      // [ [{Size: "36"}, {Color: "M"}], [{Size: "40"}, {Color: "L"}], ... ]
+    })).map( a => Object.assign({}, ...a)); 
+    // [ [{Size: "36", Color: "M"}], [{Size: "40", Color: "L"}], ... ]
+
+    setAllOpts(aOpts); 
+    setSelectedVariant(aOpts[0]);
+
+    const variantEssentialValue = aOpts[0][ks[0]] // value of the essential variant (size)
+    setValidOpts(
+      allOpts.filter( (opt) => opt[ks[0]] == variantEssentialValue )
+    );// setValidOpts
+  }, []); 
+
+
   const {
-    product: { images, title, descriptionHtml, id, variants },
+    product: { images, title, descriptionHtml, id, variants, options },
   } = props;
+  console.log(allOpts);
   const addToCart = async () => {
     try {
       if (productQuantity < 1) return;
-      const {
-        product: { variants },
-      } = props;
-      console.log("Fired");
-      const variantId = selectedVariant
-        ? variants.find(({ title }) => title === selectedVariant).id
-        : variants[0].id;
+      // const {
+      //   product: { variants },
+      // } = props;
+      // const variantId = selectedVariant
+      //   ? variants.find(({ title }) => Object.keys(selectedVariant).map((k)=> title.includes(selectedVariant[k])).reduce((a, c)=> a&&c) ).id
+      //   : variants[0].id;
       await addProductToCart([
         {
-          variantId,
+          selectedVariantId: getIdFromData(allOpts, selectedVariant),
           quantity: Number(productQuantity),
         },
       ]);
@@ -49,11 +79,15 @@ const ProductPage = (props) => {
       setTimeout(() => setAddedToCartResult(''), 1000);
     }
   };
-  const options = variants.map(({ id, title }) => ({
-    key: id,
-    value: title,
-    text: title,
-  }));
+
+  const popOptionMenu = (optionType) => {
+    const listItemer = (val, disabled) => {
+      return {key: val, value: val, text: val, disabled};
+    }
+    const validOpsInOptionType = _.uniq(validOpts.map( op => op[optionType] ));
+    return _.uniq(allOpts.map((op) => op[optionType])).map( (v) => listItemer(v, !validOpsInOptionType.includes(v)) ) ;
+  };
+
   const styles ={
     addToCart: {
       borderRadius: 0,
@@ -88,6 +122,9 @@ const ProductPage = (props) => {
       <Button  style={{color:"#dcddde", backgroundColor:"#1b1c1d", width:"100%"}} onClick={addToCart} icon="cart">ADD TO CART</Button>
     </Grid.Row>
   </Grid>;
+
+
+
   return (
     <>
       <Dimmer active={addedToCartResult != ''?true:false}>
@@ -126,15 +163,29 @@ const ProductPage = (props) => {
           >
             <Segment>
               <Header>{title}</Header>
-              <Header as="h3">Size </Header>
-              <Dropdown
-                // placeholder="Select Friend"
-                fluid
-                selection
-                defaultValue={options[0].value}
-                onChange={(e, { value }) => setSelectedVariant(value)}
-                options={options}
-              />
+              {
+                options.map((option) => {
+                  return (
+                    <>
+                    <Header as="h3">{option.name} </Header>
+                    <Dropdown
+                      fluid
+                      selection
+                      onChange={(e, { value }) => {
+                        const selectedVar = {...selectedVariant, [option.name]: value};
+                        setSelectedVariant(selectedVar);
+                      }}
+                      // options={popOptionMenu(option.name)}
+                      // options={option.values != null? option.values:[]}
+                    >
+                      <Dropdown.Menu>
+                        {popOptionMenu(option.name).map( item => <Dropdown.Item style={item.disabled?{color:  "grey"}:{}}  text={item.text} ></Dropdown.Item>  ) }
+                      </Dropdown.Menu> 
+                    </Dropdown>
+                    </>
+                  );
+                })
+              }
               <Header as="h3">ADD to Cart </Header>
               {addToCartWidget()}
             </Segment>
@@ -153,7 +204,7 @@ const ProductPage = (props) => {
 };
 
 export async function getServerSideProps({ query }) {
-  console.log(query.productId[0]);
+  // console.log(query.productId[0]);
   const product = await client.product.fetch(query.productId[0]);
   return {
     props: {
